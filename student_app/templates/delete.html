@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container col-md-6 mt-4">
+            <!-- <h3>Add New Student Record</h3> -->
+            <form method="POST" action="/delete">
+                <!-- <div class="form-group">
+                    <input type="hidden" name="id_" value="{{student.id_}}"> 
+                </div> -->
+                <div class="form-group">
+                    <p>Are you sure you want to delete "{{ student.id_ }}"?</p>
+        
+                    <button class="btn btn-4" type="submit">Delete</button>
+                     <a href="{% url 'book_detail' book.id %}" class="btn btn-light">Cancel</a>
+        
+                   
+                 </div>
+            </form>
+        </div>
+
+    </body>
+
+    <script type="text/javascript" src="/static/jquery/jquery.min.js"> </script>
+    <script type="text/javascript">
+
+        function delete_get(){
+            // var student_data = {
+            //             "name"       :  $("#txtName").val(),
+            //             "grade"      :  $("#txtGrade").val(),
+            //             "faculty"    :  $("#txtFaculty").val(),
+            //             "section"    :  $("#btnSection").val(),
+            //             "roll_no"    :  $("#txtRoll").val(),
+            //             "age"        :  $("#txtAge").val(),
+            //             "gender"     :  $("#btnGender").val(),
+            //             "address"    :  $("#txtAddress").val(),
+            //             "parent_name":  $("#txtParent").val()
+            //         }
+            //     console.log(student_data)
+            $.ajax({
+                type: "GET",
+                url: '/delete/' +,
+                data: JSON.stringify(student_data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            }).done(function (response) {
+                console.log(response);
+                alert(response.msg);
+                window.location.href = "/list"
+    
+            }).fail(function (jqXHR, textStatus )  {
+                //error log
+            });
+            
+            
+        }
+         
+    </script>
+</html>
