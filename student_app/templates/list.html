@@ -7,8 +7,6 @@
 <body>
     
     <div class="container mt-4">
-        
-
         <div class="float-right mb-2">
             <button class="btn btn-primary "  onclick="load_popup('A', '')">New</button>
         </div>
@@ -67,11 +65,8 @@
                             </form>
                         </div>
                         <div class="modal-footer justify-content-center">
-                            
                                 <input class="btn btn-primary mt-2" id="addbtn" data-dismiss="modal" type="button" name="" value="submit" onclick="add_post()">
                                 <input class="btn btn-primary mt-2 " id="editbtn2" type="submit" value="Student Data Updated" onclick="edit_post()">
-
-                            
                         </div>
                     </div>
                 </div>
@@ -109,78 +104,12 @@
                         <td>
                             <a class="btn btn-primary editbtn" href="#" onclick="load_popup('E','{{student.id_}}')">Edit</a>
                             <a class="btn btn-primary" href="#" type="button" name="" value="submit" onclick="delete_get('{{student.id_}}')">X</a>
-                            
                         </td>
                     </tr>
                     
                     {% endfor %}
                 </tbody>
             </table>
-            <!-- modal for studentEditModal  -->
-            <!-- <div class="modal fade" id="studentEditModal">
-                <div class="modal-dialog modal-dialog-centered modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3  class="text-center ">Edit Student Record</h3>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <form  id="editFormID">
-                            <div class="modal-body">
-                            
-                                <div class="form-group">
-                                    <input type="hidden" name="id_" id="id_" > 
-                                </div>
-                                <div class="form-group">
-                                    
-                                    <label for="">Name</label>
-                                    <input class="form-control" type="text" name="txtName" id="edttxtName" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Grade</label>
-                                    <input class="form-control" type="text" name="txtGrade" id="edttxtGrade" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Faculty</label>
-                                    <input class="form-control" type="text" name="txtFaculty" id="edttxtFaculty" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Section</label><br>
-                                    <input class="btn" type="radio" name="btnSection" value="A" id="section_A">A 
-                                    <input class="btn" type="radio" name="btnSection" value="B" id="section_B">B 
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Roll_no</label>
-                                    <input class="form-control" type="text" name="txtRoll" id="edttxtRoll" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Age</label>
-                                    <input class="form-control" type="text" name="txtAge" id="edttxtAge" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Gender</label><br>
-                                    <input class="btn" type="radio" name="btnGender" value="M" id="gender_M">Male 
-                                    <input class="btn" type="radio" name="btnGender" value="F" id="gender_F">Female 
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Address</label>
-                                    <input class="form-control" type="text" name="txtAddress" id="edttxtAddress" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Parent_name</label>
-                                    <input class="form-control" type="text" name="txtParent" id="edttxtParent" >
-                                </div>
-                             
-                            </div>
-                        </form>
-                        
-                        <div class="modal-footer" >
-                            
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            
-            
     </div>
 </body>
 <script type="text/javascript" src="/static/jquery/jquery.min.js"> </script>
@@ -192,7 +121,7 @@
 
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <!-- <script type="text/javascript" src="js/bootstrap.js"></script> -->
+
     <script type="text/javascript">
         // To post add in list page 
         function add_post(){
@@ -236,8 +165,6 @@
                 }).done(function (response) {
                     console.log(response)
                     alert(response.msg)
-                    // location.reload();
-                    // window.location.href = "/list"
             
                 }).fail(function (jqXHR, textStatus )  {
                         //error log
@@ -246,7 +173,7 @@
                     
             }
 
-
+            // To load popup modal by same modal for all
            function load_popup(tag,id_){
                if (tag == 'A'){
                     $(".title").html("<b>Add New Student Record</b>");
@@ -267,7 +194,6 @@
         // This function make data load in form while we click in edit button 
        
         function get_Detail(id_){
-
             $.ajax({
                 type: "GET",
                 url: '/student/detail/'+ id_,
@@ -301,9 +227,6 @@
                     $("#btnGender").val(response.gender);
                     $("#txtAddress").val(response.address);
                     $("#txtParent").val(response.parent_name);
-                    
-                // alert(response.msg)
-                // window.location.href = "/list"
     
             }).fail(function (jqXHR, textStatus )  {
                 //error log
@@ -314,7 +237,7 @@
       
         // This function submit the edited data and show in list
         function edit_post(id_){
-            
+
             var section = "";
             if (document.getElementById("section_A").checked == true){
                 
@@ -360,9 +283,9 @@
             }).fail(function (jqXHR, textStatus )  {
                 //error log
             });
-            
-            
+                
         }    
+
         // This function delete the row which you selected
         function delete_get(id_){
             $.ajax({
@@ -375,13 +298,10 @@
                 console.log(response);
                 alert(response.msg);
                 location.reload();
-                // window.location.href = "/list"
     
             }).fail(function (jqXHR, textStatus )  {
                 //error log
-            });
-            
-            
+            }); 
         }
          
     </script>
